@@ -1,0 +1,12 @@
+for (int i = size - 1; i > 0; i--)
+	{
+		for (int j = 0; j < i; j++)
+		{
+			if (ptr[j] < ptr[j + 1])
+			{
+				temp = ptr[j];
+				ptr[j] = ptr[j + 1];
+				ptr[j + 1] = temp;
+			}
+		}
+	}
