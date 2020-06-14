@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef struct {
+	char name[21];
+	int hei;
+	double wei;
+}People;
+
+int main(void)
+{
+	People a[5] = { {'\0', 0, 0 } };
+	People temp = {'\0', 0, 0 };
+
+	for (int i = 0; i < 5; i++)
+	{
+		scanf("%s %d %lf", a[i].name, &a[i].hei, &a[i].wei);
+	}
+
+	for (int i = 5 - 1 ; i > 0; i--)
+	{
+		for (int j = 0; j < i; j++)
+		{
+			if (strcmp(a[j].name, a[j + 1].name) == 1)
+			{
+				temp = a[j];
+				a[j] = a[j + 1];
+				a[j + 1] = temp;
+			}
+		}
+	}
+
+	printf("name\n");
+	for (int i = 0; i < 5; i++)
+	{
+		printf("%s %d %.1f\n", a[i].name, a[i].hei, a[i].wei);
+	}
+
+	for (int i = 5 - 1 ; i > 0; i--)
+	{
+		for (int j = 0; j < i; j++)
+		{
+			if (a[j].wei < a[j + 1].wei)
+			{
+				temp = a[j];
+				a[j] = a[j + 1];
+				a[j + 1] = temp;
+			}
+		}
+	}
+
+	printf("\nweight\n");
+	for (int i = 0; i < 5; i++)
+	{
+		printf("%s %d %.1f\n", a[i].name, a[i].hei, a[i].wei);
+	}
+
+	return 0;
+}
