@@ -25,7 +25,12 @@ int set_find(int curr) // curr가 속하는 집합을 반환하는 함수
     {
         return curr;
     }
-    return parent[curr] = set_find(parent[curr]);
+    parent[curr] = set_find(parent[curr]);
+    if (parent[curr] == -1) //만약 루트를 찾았다면
+    {
+    	parent[curr] = curr; //루트의 위치를 바로 저장
+    }
+    return parent[curr];
 }
 
 void set_union(int a, int b) // 두 원소가 속한 집합을 합치는 함수
@@ -36,10 +41,6 @@ void set_union(int a, int b) // 두 원소가 속한 집합을 합치는 함수
     {
         parent[root_a] = root_b;
     }
-    if (parent[b] != -1) // b가 루트가 아니라면 b의 루트를 a에 저장
-    {
-        parent[root_a] = parent[b];
-    } 
 }
 
 typedef struct Edge // 간선을 나타내는 구조체
